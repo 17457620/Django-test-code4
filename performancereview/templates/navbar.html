@@ -1,0 +1,85 @@
+    <!-- Navbar -->
+    <div class="navbar">
+        <p class="company" style="color:white">Dunder Mifflin Paper Company, Inc.</p>
+        <p class="welcomeTime" style="color:white">Welcome {{ user.first_name }}. The current time is <span id="Time"></span></p>
+        <ul class="navLinks">
+            <li><a href="{% url 'home' %}" class="modalBtn" style="color:white">Home</a></li>
+            <li><a href="{% url 'employees1' %}" class="modalBtn" style="color:white">View Performance Reviews</a></li>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'performancereviewform' %}" class="modalBtn" style="color:white">Create Peformance Review</a></li>
+
+            <!-- Fix this -->
+            <li><a href="{% url 'employees1' %}" class="modalBtn" style="color:white">Edit Peformance Review</a></li>
+
+
+            <li><a href="{% url 'register' %}" class="modalBtn" style="color:white">Register Employee</a>
+            </li>
+            {% endif %}
+            
+            <li><a class="modalBtn" style="color:white" onclick="document.getElementById('logoutModal').style.display='block'">Log Out</a>
+            </li>
+        </ul>
+    </div>
+    <div id="logoutModal" class="modalback">
+        <form class="logoutModalBox">
+            <div>
+                <p>Are you sure you want to logout?</p>
+                <div class="modalContentBtn">
+                    <button type="button" onclick="Logout()" class="logoutBtn" style="color:white">Log Out</button>
+                    <button type="button" onclick="document.getElementById('logoutModal').style.display='none'"
+                        class="cancelBtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="registerEmployeeModal" class="modalback">
+        <form class="registerModalBox">
+            <div>
+                <h1>Register New Employee</h1>
+                <ul>
+                    <li>
+                        <label for="employeeID">Employee ID:</label>
+                        <input type="text" placeholder="Enter Employee ID" name="employeeID" id="employeeID" required>
+                    </li>
+                    <li>
+                        <label for="employeeEmail">Employee Email:</label>
+                        <input type="email" placeholder="Enter Employee Email" name="employeeEmail" id="employeeEmail"
+                            required>
+                    </li>
+                    <li>
+                        <label for="employeePassword">Employee Password:</label>
+                        <input type="password" placeholder="Enter Employee Password" name="employeePassword"
+                            id="employeePassword" required>
+                    </li>
+                    <li>
+                        <label for="repeatPassword">Repeat Password:</label>
+                        <input type="password" placeholder="Repeat Employee Password" name="repeatPassword"
+                            id="repeatPassword" required>
+                    </li>
+                    <li>
+                        <label for="employeePosition">Select Employee Position:</label>
+                        <select id="employeePosition" name="employeePosition" required>
+                            <option value="none">Select Position</option>
+                            <option value="sales">Sales</option>
+                            <option value="foreman">Foreman</option>
+                            <option value="accounting">Accounting</option>
+                            <option value="reception">Reception</option>
+                            <option value="warehouse">Warehouse</option>
+                            <option value="manager">Manager</option>
+                            <option value="hr">HR</option>
+                            <option value="ceo">CEO</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="modalContentBtn">
+                    <button type="button" class="registerButton">Register</button>
+                    <button type="button"
+                        onclick="document.getElementById('registerEmployeeModal').style.display='none'"
+                        class="cancelBtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+

@@ -1,0 +1,36 @@
+<div class="container">
+    <br><br>
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="{{ employee.image.url }}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <center>
+                        <h5 class="card-title">{{ employee.first_name }} {{ employee.last_name }}</h5>
+                        <p class="card-text">
+                            {% for performancereview in performancereviews %}
+                                <div class="performance-review">
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <a class="btn btn-outline-dark mt-auto" href="{% url 'performancereviewdisplay' performancereview.id %}">
+                                                Performance Review Form ID: {{ performancereview.id }}
+                                            </a>
+                                        </div>
+                                        <small class="text-muted">Created on: {{ performancereview.dateOfReview }}</small>
+                                    </div>
+                                </div>
+                            {% empty %}
+                                <p class="card-text">No performance reviews found for this employee.</p>
+                            {% endfor %}
+                            <a href="{% url 'employees1' %}" class="btn btn-primary">Back to Employees</a>
+                        </p>
+                        <!-- <p class="card-text"><small class="text-body-secondary">Testing</small></p> -->
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>

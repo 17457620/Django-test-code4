@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- Header-->
+    <header class="bg-dark py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="text-center text-white">
+                <h1 class="display-4 fw-bolder">Performance Review Form</h1>
+                <p class="lead fw-normal text-white-50 mb-0">Create a performance review</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <br>
+                <form method="POST" action="{% url 'performancereviewform' %}">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="mb-3">
+                        <label for="inputName" class="form-label text-start">Name</label>
+                        <input type="text" class="form-control" id="inputName" name="name" placeholder="e.g. Bob Smith">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputEmployeeID" class="form-label text-start">EmployeeID</label>
+                        <input type="text" class="form-control" id="inputEmployeeID" name="employeeID" placeholder="e.g. DM001">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputPosition" class="form-label text-start">Position</label>
+                        <input type="text" class="form-control" id="inputPosition" name="position" placeholder="e.g. Human Resources">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputDateOfReview" class="form-label text-start">Date of Review</label>
+                        <input type="text" class="form-control" id="inputDateOfReview" name="dateOfReview">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="inputTimeOfReview" class="form-label text-start">Time of Review</label>
+                        <input type="text" class="form-control" id="inputTimeOfReview" name="timeOfReview">
+                    </div>
+
+
+			        <div class="review-section">
+			            <h2>Performance Evaluation</h2>
+			            <table>
+			                <thead>
+			                    <tr>
+			                        <th>Criteria</th>
+			                        <th>Rating</th>
+			                        <!-- <th>Comments (optional)</th> -->
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <tr>
+			                        <td>Job Knowledge</td>
+			                        <td>
+			                            <select name="jobKnowledge" id="jobKnowledge">
+			                                <option value="" disabled selected>Select</option>
+			                                <option value="5-Excellent">5-Excellent</option>
+			                                <option value="4-Exceeds Expectations">4-Exceeds Expectations</option>
+			                                <option value="3-Meets Expectations">3-Meets Expectations</option>
+			                                <option value="2-Needs Improvement">2-Needs Improvement</option>
+			                                <option value="1-Unacceptable">1-Unacceptable</option>
+			                            </select>
+			                            <span id="job_knowledgeError" style="color: red; display: none;"></span>
+			                        </td>
+			                    </tr>
+
+			                    <tr>
+			                        <td>Work Quality</td>
+			                        <td>
+			                        	<br>
+			                            <select name="workQuality" id="workQuality">
+			                                <option value="" disabled selected>Select</option>
+			                                <option value="5-Excellent">5-Excellent</option>
+			                                <option value="4-Exceeds Expectations">4-Exceeds Expectations</option>
+			                                <option value="3-Meets Expectations">3-Meets Expectations</option>
+			                                <option value="2-Needs Improvement">2-Needs Improvement</option>
+			                                <option value="1-Unacceptable">1-Unacceptable</option>
+			                            </select>
+			                            <br><br>
+			                            <span id="work_qualityError" style="color: red; display: none;"></span>
+			                        </td>
+			                    </tr>
+
+			                    <tr>
+			                        <td>Initiative</td>
+			                        <td>
+			                            <select name="initiative" id="initiative">
+			                                <option value="" disabled selected>Select</option>
+			                                <option value="5-Excellent">5-Excellent</option>
+			                                <option value="4-Exceeds Expectations">4-Exceeds Expectations</option>
+			                                <option value="3-Meets Expectations">3-Meets Expectations</option>
+			                                <option value="2-Needs Improvement">2-Needs Improvement</option>
+			                                <option value="1-Unacceptable">1-Unacceptable</option>
+			                            </select>
+			                            <br>
+			                            <span id="initiativeError" style="color: red; display: none;"></span>
+			                        </td>
+			                    </tr>
+
+			                    <tr>
+			                        <td><br>Communication</td>
+			                        <td>
+			                        	<br>
+			                            <select name="communication" id="communication">
+			                                <option value="" disabled selected>Select</option>
+			                                <option value="5-Excellent">5-Excellent</option>
+			                                <option value="4-Exceeds Expectations">4-Exceeds Expectations</option>
+			                                <option value="3-Meets Expectations">3-Meets Expectations</option>
+			                                <option value="2-Needs Improvement">2-Needs Improvement</option>
+			                                <option value="1-Unacceptable">1-Unacceptable</option>
+			                            </select>
+			                            <br>
+			                            <span id="communicationError" style="color: red; display: none;"></span>
+			                        </td>
+			                    </tr>
+
+			                    <tr>
+			                        <td>Dependability</td>
+			                        <td>
+			                        	<br>
+			                            <select name="dependability" id="dependability">
+			                                <option value="" disabled selected>Select</option>
+			                                <option value="5-Excellent">5-Excellent</option>
+			                                <option value="4-Exceeds Expectations">4-Exceeds Expectations</option>
+			                                <option value="3-Meets Expectations">3-Meets Expectations</option>
+			                                <option value="2-Needs Improvement">2-Needs Improvement</option>
+			                                <option value="1-Unacceptable">1-Unacceptable</option>
+			                            </select>
+			                            <br><br>
+			                            <span id="dependabilityError" style="color: red; display: none;"></span>
+			                        </td>
+			                    </tr>
+			                </tbody>
+			            </table>
+			        </div>
+
+
+<!--                     <div class="mb-3">
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="exampleRadio1" name="decision" value="accept">
+                            <label class="form-check-label text-start" for="exampleRadio1" style="margin-right: 10px;">Accept</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" class="form-check-input" id="exampleRadio2" name="decision" value="reject">
+                            <label class="form-check-label text-start" for="exampleRadio2">Deny</label>
+                        </div>
+                    </div> -->
+
+                    <br>
+			        <div class="review-section">
+			            <h2>Overall Feedback</h2>
+			            <textarea name="overallFeedback" rows="5" cols="80" id="overallFeedback" id="overallFeedback">
+			            </textarea>
+			        </div>
+			        
+			        <br>
+                    <button type="submit" class="btn btn-primary" style="margin-right: 10px;" id="createButton">Create</button>
+                    <button type="submit" class="btn btn-secondary" id="saveButton">Save</button>
+                    <br><br><br>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

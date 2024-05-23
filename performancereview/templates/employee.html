@@ -1,0 +1,70 @@
+{% load static %}
+<!-- {% static 'Hcss/Home.css' %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'Hcss/Home.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="seperate">
+        <div class="homeMain">
+            <p>
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <br>
+                    <h1 class="fw-bolder" style="font-size: 70px"> {{ employee.first_name }} {{ employee.last_name }} </h1>
+                    <h1 class="fw-bolder" style="font-size: 50px"> Select a Performance Review </h1>
+                    {% for performancereview in performancereviews %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <div class="text-center">
+                            <h5 class="fw-bolder"> <a class="btn btn-primary" href="{% url 'performancereviewdisplay' performancereview.id %}" style="color:white"> Performance Review Form ID: {{ performancereview.id }} </a>
+                            <small class="text-muted">Created on: {{ performancereview.dateOfReview }}</small>
+                            </h5>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="card-text">No performance reviews found for this employee.</p>
+                        <br>
+                        {% endfor %}
+                        <br>
+                        <a href="{% url 'employees1' %}" class="btn btn-primary" style="color:white">Back to Employees</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+            </p>
+        </div>
+    </div>
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

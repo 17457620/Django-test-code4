@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="{% static 'Lcss/Login.css' %}">
+</head>
+
+<body>
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="TimeDate">
+            <p>Welcome to the Dunder Mifflin performance review system. The current time is <span id="Time"></span></p>
+        </div>
+        <h1>Sign In</h1>
+        <div>
+            <label>Employee ID:</label>
+            <input type="text" name="employeeID" placeholder="Enter Employee ID">
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter Password">
+        </div>
+        <button>Log In</button>
+    </form>
+    <script>
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+    </script>
+</body>
+
+</html>

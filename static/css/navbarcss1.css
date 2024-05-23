@@ -1,0 +1,85 @@
+.navbar {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 60px;
+    background-color: rgb(220, 220, 220, 0.1);
+    z-index: 1000;
+}
+
+.navLinks {
+    display: flex;
+    justify-content: right;
+    list-style: none;
+}
+
+.welcomeTime, .company {
+    flex: auto;
+    letter-spacing: 1px;
+}
+
+.company {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+a {
+    padding-right: 30px;
+    margin: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: black;
+}
+button {
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    width: 50%;
+    float: left;
+}
+
+button:hover, .modalBtn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.logoutBtn {
+    background-color: rgb(255,0,0,0.8);
+    color: white;
+}
+
+.cancelBtn {
+    background-color: rgb(192,192,192);
+}
+
+.modalContentWords {
+    padding: 16px;
+    text-align: center;
+    background-color: rgb(204,229,255,0.2);
+    font-weight: bolder;
+}
+
+.modalback {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
+}
+
+.modalContent {
+    margin: auto;
+    width: 40%;
+}
+
+.modalContentBtn::after {
+    content: "";
+    clear: both;
+    display: table;
+}

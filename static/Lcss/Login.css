@@ -1,0 +1,61 @@
+form {
+    background: white;
+    flex-direction: column;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url(images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #231f20;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+label {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: black;
+}
+
+input {
+    width: 200px;
+    border: none;
+    border-bottom: 2px solid black;
+    padding: 10px 0px;
+    outline: none;
+    background: url(images/background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+button {
+    margin-top: 20px;
+    width: 150px;
+    border: none;
+    background: black;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+button:hover {
+    opacity: 0.8;
+}

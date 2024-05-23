@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Performance Review</title>
+    <link rel="stylesheet" href="{% static 'Hcss/Home.css' %}">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="container mt-5">
+        <h1 class="fw-bolder text-center">Create Performance Review</h1>
+
+        <!-- Alert messages -->
+        {% if messages %}
+            <div class="alert-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" action="{% url 'performancereviewform' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                {{ form.employeeName.label_tag }}
+                                {{ form.employeeName }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.employeeID.label_tag }}
+                                {{ form.employeeID }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.position.label_tag }}
+                                {{ form.position }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.dateOfReview.label_tag }}
+                                {{ form.dateOfReview }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.timeOfReview.label_tag }}
+                                {{ form.timeOfReview }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.jobKnowledge.label_tag }}
+                                {{ form.jobKnowledge }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.workQuality.label_tag }}
+                                {{ form.workQuality }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.initiative.label_tag }}
+                                {{ form.initiative }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.communication.label_tag }}
+                                {{ form.communication }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.dependability.label_tag }}
+                                {{ form.dependability }}
+                            </div>
+                            <div class="form-group">
+                                {{ form.overallFeedback.label_tag }}
+                                {{ form.overallFeedback }}
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-right: 10px;" id="createButton">Create</button>
+                            <button type="submit" class="btn btn-secondary" id="saveButton">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000);
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+        
+        // Automatically hide alert messages after a few seconds
+        window.onload = function() {
+            setTimeout(function() {
+                var alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    alert.style.display = 'none';
+                });
+            }, 5000);  // Hide after 5 seconds
+        };
+    </script>
+</body>
+
+</html>

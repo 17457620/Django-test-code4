@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>Performance Review Template</title>
+    <link rel="stylesheet" href="styles2.css">
+    <script type="text/javascript" src="functions2.js"></script>
+</head>
+<body>
+    <h1>Employee Performance Review</h1>
+    <form id="PR1" method="post" action="https://www.somewhereonline123.com.au" onsubmit="return checkForm(this);">
+
+        <div class="form-element">
+            <span id="form-error" style="color: red; display: none; font-size:40px;"> All fields are required </span>
+        </div>
+
+        <div class="review-section">
+            <h2>Employee Information</h2>
+            <label for="name"><strong>Name</strong></label>
+            <input type="text" name="name" id="name" placeholder="e.g. Bob Smith" onblur="checkName(this);">
+            <span id="nameError" style="color: red; display: none;"></span>
+            <br>
+            <label for="employeeID"><strong>EmployeeID</strong></label>
+            <input type="text" name="employeeID" id="employeeID" placeholder="123" onblur="checkEmployeeID(this);">
+            <span id="employeeIDError" style="color: red; display: none;"></span>
+            <br>
+            <label for="position"><strong>Position</strong></label>
+            <input type="text" name="position" id="position" onblur="checkPosition(this);">
+            <span id="positionError" style="color: red; display: none;"></span>
+            <br>
+            <label for="reviewdate"><strong>Date of Review</strong></label>
+            <input type="date" name="reviewdate" id="reviewdate" onblur="checkRD(this);">
+            <span id="reviewdateError" style="color: red; display: none;"></span>
+            <br>
+            <label for="reviewtime"><strong>Time of Review</strong></label>
+            <input type="time" name="reviewtime" id="reviewtime" onblur="checkRT(this);">
+            <span id="reviewtimeError" style="color: red; display: none;"></span>
+            <br>
+        </div>
+
+        <div class="review-section">
+            <h2>Performance Evaluation</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>Rating</th>
+                        <th>Comments (optional)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Job Knowledge</td>
+                        <td>
+                            <select name="job_knowledge">
+                                <option value="" disabled selected>Select</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="exceeds_expectations">Exceeds Expectations</option>
+                                <option value="meets_expectations">Meets Expectations</option>
+                                <option value="needs_improvement">Needs Improvement</option>
+                                <option value="unacceptable">Unacceptable</option>
+                            </select>
+                            <br>
+                            <span id="job_knowledgeError" style="color: red; display: none;"></span>
+                        </td>
+                        <td><textarea name="job_knowledge_comment" rows="3" cols="40"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Work Quality</td>
+                        <td>
+                            <select name="work_quality">
+                                <option value="" disabled selected>Select</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="exceeds_expectations">Exceeds Expectations</option>
+                                <option value="meets_expectations">Meets Expectations</option>
+                                <option value="needs_improvement">Needs Improvement</option>
+                                <option value="unacceptable">Unacceptable</option>
+                            </select>
+                            <br>
+                            <span id="work_qualityError" style="color: red; display: none;"></span>
+                        </td>
+                        <td><textarea name="work_quality_comment" rows="3" cols="40"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Initiative</td>
+                        <td>
+                            <select name="initiative">
+                                <option value="" disabled selected>Select</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="exceeds_expectations">Exceeds Expectations</option>
+                                <option value="meets_expectations">Meets Expectations</option>
+                                <option value="needs_improvement">Needs Improvement</option>
+                                <option value="unacceptable">Unacceptable</option>
+                            </select>
+                            <br>
+                            <span id="initiativeError" style="color: red; display: none;"></span>
+                        </td>
+                        <td><textarea name="initiative_comment" rows="3" cols="40"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Communication</td>
+                        <td>
+                            <select name="communication">
+                                <option value="" disabled selected>Select</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="exceeds_expectations">Exceeds Expectations</option>
+                                <option value="meets_expectations">Meets Expectations</option>
+                                <option value="needs_improvement">Needs Improvement</option>
+                                <option value="unacceptable">Unacceptable</option>
+                            </select>
+                            <br>
+                            <span id="communicationError" style="color: red; display: none;"></span>
+                        </td>
+                        <td><textarea name="communication_comment" rows="3" cols="40"></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Dependability</td>
+                        <td>
+                            <select name="dependability">
+                                <option value="" disabled selected>Select</option>
+                                <option value="excellent">Excellent</option>
+                                <option value="exceeds_expectations">Exceeds Expectations</option>
+                                <option value="meets_expectations">Meets Expectations</option>
+                                <option value="needs_improvement">Needs Improvement</option>
+                                <option value="unacceptable">Unacceptable</option>
+                            </select>
+                            <br>
+                            <span id="dependabilityError" style="color: red; display: none;"></span>
+                        </td>
+                        <td><textarea name="dependability_comment" rows="3" cols="40"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="review-section">
+            <h2>Overall Feedback</h2>
+            <textarea name="overallFeedback" rows="5" cols="80" id="overallFeedback"></textarea>
+        </div>
+
+        <br>
+
+        <div class="review-section">
+            <h2>Employee Response</h2>
+            <p>Feedback from employee</p>
+            <textarea name="employee_feedback" rows="5" cols="80"></textarea>
+        </div>
+        <br>
+
+        <input type="submit" value="Submit">
+        <span id="submitButtonError" style="color: red; display: none;">Please fill the required fields above.</span>
+
+    </form>
+
+    <br><br>
+
+</body>
+</html>

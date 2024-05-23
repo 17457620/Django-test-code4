@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="{% static 'Rcss/Register.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    <div id="logoutModal" class="modalback">
+        <form class="logoutModalBox">
+            <div>
+                <p>Are you sure you want to logout?</p>
+                <div class="modalContentBtn">
+                    <button type="button" onclick="Logout()" class="logoutBtn">Log Out</button>
+                    <button type="button" onclick="document.getElementById('logoutModal').style.display='none'"
+                        class="cancelBtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="reg">
+        <form method="POST" class="register">
+            {% csrf_token %}
+            <h1>Register New Employee</h1>
+            {{ form.as_p }}
+            <button type="submit" class="registerButton">Register</button>
+        </form>
+    </div>
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

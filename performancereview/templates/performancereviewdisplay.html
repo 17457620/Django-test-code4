@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'Hcss/Home.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="seperate">
+        <div class="homeMain">
+            <p>
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <h1 class="fw-bolder"> Performance Review ID Number: {{ performancereview.id }} </h1>
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Employee image-->
+                            <!-- <img class="card-img-top" src="{{ employee.image.url }}" alt="..." /> -->
+                            <!-- Employee details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                <h1 class="fw-bolder"> {{ performancereview.employeeID.first_name }} {{ performancereview.employeeID.last_name }} </h1>
+                                <p class="card-text">
+                                    <strong>Job Knowledge:</strong> {{ performancereview.jobKnowledge }}<br>
+                                    <strong>Work Quality:</strong> {{ performancereview.workQuality }}<br>
+                                    <strong>Dependability:</strong> {{ performancereview.dependability }}<br>
+                                    <strong>Communication:</strong> {{ performancereview.communication }}<br>
+                                    <strong>Initiative:</strong> {{ performancereview.initiative }}<br>
+                                    <strong>Date of Review:</strong> {{ performancereview.dateOfReview }}<br>
+                                    <strong>Time of Review:</strong> {{ performancereview.timeOfReview }}<br>
+                                    <strong>Overall Feedback:</strong><br> {{ performancereview.overallFeedback }}<br><br>
+                                </p>
+                                </div>
+                                <a href="{% url 'employee' performancereview.employeeID.employeeID %}" class="btn btn-primary" style="color:white">Back to Employee</a>
+                                {% if request.user.is_superuser %}
+                                    <a href="{% url 'edit_performance_review' performancereview.id %}" class="btn btn-secondary" style="color:white">Edit</a>
+                                {% endif %}
+
+                                <br><br>
+
+                                {% if not request.user.is_superuser and request.user.employee.employeeID == performancereview.employeeID.employeeID %}
+                                <form method="post" action="#" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-success">Accept</button>
+                                </form>
+
+                                <form method="post" action="#" style="display: inline;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Deny</button>
+                                </form>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            </p>
+        </div>
+    </div>
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

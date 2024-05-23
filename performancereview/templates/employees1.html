@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'Hcss/Home.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="seperate">
+        <div class="homeMain">
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <h1 class="fw-bolder" style="font-size: 70px">Select an Employee</h1>
+                        <!-- <input type="text" id="search-input" placeholder="Search employees..." onkeyup="filterEmployees()"> -->
+                        <div id="employees-list" style="font-size: 35px">
+                            {% if user.is_superuser %}
+                            <input type="text" style="font-size: 35px" id="search-input" placeholder="Search employees..." onkeyup="filterEmployees()">
+                                {% for employee in employees %}
+                                <div class="col mb-5 employee-card">
+                                    <div class="card h-100">
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <h5 class="fw-bolder">
+                                                    <a class="btn btn-primary" href="{% url 'employee' employee.employeeID %}" style="color:white">
+                                                        {{ employee.first_name }} {{ employee.last_name }}
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <!-- Else only display the employee that is logged in -->
+                                {% for employee in employees %}
+                                <div class="col mb-5 employee-card">
+                                    <div class="card h-100">
+                                        <div class="card-body p-4">
+                                            <div class="text-center">
+                                                <h5 class="fw-bolder">
+                                                    <a class="btn btn-primary" href="{% url 'employee' employee.employeeID %}" style="color:white">
+                                                    {{ employee.first_name }} {{ employee.last_name }}
+                                                    <a/
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        // Search bar function
+        function filterEmployees() {
+            var input, filter, cards, cardContainer, h5, title, i;
+            input = document.getElementById("search-input");
+            filter = input.value.toUpperCase();
+            cardContainer = document.getElementById("employees-list");
+            cards = cardContainer.getElementsByClassName("employee-card");
+            for (i = 0; i < cards.length; i++) {
+                title = cards[i].getElementsByTagName("h5")[0];
+                if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

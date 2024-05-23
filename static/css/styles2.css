@@ -1,0 +1,9 @@
+html {background: white;}
+body {width: 650px; margin: auto; font: 1.2em Arial; color: black;}
+form {background: #d3e0ea; /* Blue-ish color */ width: 720px; margin: auto; padding: 10px;}
+h1, h2, h3 {color: brown;}
+h1 {font-size: 160%;}
+h2 {font-size: 120%;}
+h3 {font-size: 110%;}
+input, select {background: #add8e6; /* Light blue */ border: 1px solid brown; border-radius: 5px;}
+label {display: inline-block; width: 250px;}

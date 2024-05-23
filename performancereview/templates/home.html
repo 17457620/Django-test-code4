@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'Hcss/Home.css' %}">
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="seperate">
+        <div class="homeMain">
+            <p>
+                The Dunder Mifflin performance planning and review processis intended to assist supervisors to
+                review the
+                performance of staff annually and develop agreed performance plans based on workload agreements and the
+                strategic direction of Dunder Mifflin.
+                The Performance Planning and Review system covers both results (what was accomplished), and behaviours
+                (how
+                those results were achieved). The most important aspect is what will be accomplished in the future and
+                how
+                this will be achieved within a defined period. The process is continually working towards creating
+                improved
+                performance and behaviours that align and contribute to the mission and values of Dunder Mifflin.
+            </p>
+        </div>
+    </div>
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>

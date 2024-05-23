@@ -1,0 +1,132 @@
+{% load static %}
+<!-- {% static 'Hcss/Home.css' %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="{% static 'Hcss/Home.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <p class="company">Dunder Mifflin Paper Company, Inc.</p>
+        <p class="welcomeTime">Welcome {{ user.username }}. The current time is <span id="Time"></span></p>
+        <ul class="navLinks">
+<!--             <li><a class="modalBtn" onclick="document.getElementById('logoutModal').style.display='block'">Log Out</a>
+            </li> -->
+            <li><a href="#" class="modalBtn">Performance Review</a></li>
+            {% if user.is_superuser %}
+            <li><a href="{% url 'home' %}" class="modalBtn">Create Peformance Review</a></li> <!--Change Url-->
+            <li><a href="{% url 'home' %}" class="modalBtn">Edit Peformance Review</a></li> <!--Change Url-->
+            <li><a class="modalBtn"
+                    onclick="document.getElementById('registerEmployeeModal').style.display='block'">Register
+                    Employee</a>
+            </li>
+            {% endif %}
+            <li><a class="modalBtn" onclick="document.getElementById('logoutModal').style.display='block'">Log Out</a>
+            </li>
+        </ul>
+    </div>
+    <div id="logoutModal" class="modalback">
+        <form class="logoutModalBox">
+            <div>
+                <p>Are you sure you want to logout?</p>
+                <div class="modalContentBtn">
+                    <button type="button" onclick="Logout()" class="logoutBtn">Log Out</button>
+                    <button type="button" onclick="document.getElementById('logoutModal').style.display='none'"
+                        class="cancelBtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="registerEmployeeModal" class="modalback">
+        <form class="registerModalBox">
+            <div>
+                <h1>Register New Employee</h1>
+                <ul>
+                    <li>
+                        <label for="employeeID">Employee ID:</label>
+                        <input type="text" placeholder="Enter Employee ID" name="employeeID" id="employeeID" required>
+                    </li>
+                    <li>
+                        <label for="employeeEmail">Employee Email:</label>
+                        <input type="email" placeholder="Enter Employee Email" name="employeeEmail" id="employeeEmail"
+                            required>
+                    </li>
+                    <li>
+                        <label for="employeePassword">Employee Password:</label>
+                        <input type="password" placeholder="Enter Employee Password" name="employeePassword"
+                            id="employeePassword" required>
+                    </li>
+                    <li>
+                        <label for="repeatPassword">Repeat Password:</label>
+                        <input type="password" placeholder="Repeat Employee Password" name="repeatPassword"
+                            id="repeatPassword" required>
+                    </li>
+                    <li>
+                        <label for="employeePosition">Select Employee Position:</label>
+                        <select id="employeePosition" name="employeePosition" required>
+                            <option value="none">Select Position</option>
+                            <option value="sales">Sales</option>
+                            <option value="foreman">Foreman</option>
+                            <option value="accounting">Accounting</option>
+                            <option value="reception">Reception</option>
+                            <option value="warehouse">Warehouse</option>
+                            <option value="manager">Manager</option>
+                            <option value="hr">HR</option>
+                            <option value="ceo">CEO</option>
+                        </select>
+                    </li>
+                </ul>
+                <div class="modalContentBtn">
+                    <button type="button" class="registerButton">Register</button>
+                    <button type="button"
+                        onclick="document.getElementById('registerEmployeeModal').style.display='none'"
+                        class="cancelBtn">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="seperate">
+        <div class="homeMain">
+            <p>
+            <form method="POST" action="{% url 'update_user' %}">
+                {% csrf_token %}
+                
+                {{ form.as_p }} <!-- Imports the register form from forms.py -->
+                <br/><br/>
+                <button type="submit" class="btn btn-primary">
+                  Update user
+                </button>
+              
+            </form>
+            </p>
+        </div>
+    </div>
+    <script>
+        function Logout() {
+            window.location.href = '{% url "logout" %}';
+        }
+        setInterval(() => {
+            var time = new Date();
+            document.getElementById("Time").innerHTML = time.toLocaleTimeString();
+        }, 1000)
+        window.onclick = function (event) {
+            var logoutModal = document.getElementById('logoutModal');
+            var registerEmployeeModal = document.getElementById('registerEmployeeModal');
+
+            if (event.target == logoutModal) {
+                logoutModal.style.display = "none";
+            }
+
+            if (event.target == registerEmployeeModal) {
+                registerEmployeeModal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+
+</html>
